@@ -5,11 +5,7 @@ import { addUser, getUsers, User } from '../services/db'
 const router = express.Router()
 
 router.route('/')
-  .all((req, _, next) => {
-    console.log([req.method, req.ip, Date()].join(' '))
-    next()
-  })
-  .post(express.json(), (req, res) => {
+  .post((req, res) => {
     const user: User = {
       "username": req.body.username,
       "password": req.body.password

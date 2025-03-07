@@ -5,11 +5,7 @@ import { addBookmark, Bookmark, getBookmarks } from '../services/db'
 const router = express.Router()
 
 router.route('/')
-  .all((req, _, next) => {
-    console.log([req.method, req.ip, Date()].join(' '))
-    next()
-  })
-  .post(express.json(), (req, res) => {
+  .post((req, res) => {
     const bookmark: Bookmark = {
       "username": req.body.username,
       "link": req.body.bookmark
@@ -22,7 +18,7 @@ router.route('/')
 
     res.status(409).end()
   })
-  .get(express.json(), (req, res) => {
+  .get((req, res) => {
     res.json(getBookmarks(req.body.username))
   })
 
