@@ -1,9 +1,9 @@
-export interface Bookmark {
+export type Bookmark = {
   username: string,
   link: string
 }
 
-export interface User {
+export type User = {
   username: string,
   password: string
 }
