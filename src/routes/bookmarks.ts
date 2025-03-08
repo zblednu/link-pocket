@@ -10,8 +10,8 @@ router.use(authByToken)
 router.route('/')
   .post((req, res) => {
     const bookmark: Bookmark = {
-      "username": req.body.username,
-      "link": req.body.bookmark
+      "username": (req as any).user,
+      "link": req.body.link
     }
 
     if (addBookmark(bookmark)) {
@@ -22,7 +22,7 @@ router.route('/')
     res.status(409).end()
   })
   .get((req, res) => {
-    res.json(getBookmarks(req.body.username))
+    res.json(getBookmarks((req as any).user))
   })
 
 export default router

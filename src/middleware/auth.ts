@@ -4,14 +4,15 @@ import { validateCredentials, User } from '../services/db'
 
 export function authByToken(req: Request, res: Response, next: NextFunction) {
   // auth header is in format 'Bearer TOKEN'
+  if (!req.headers.authorization) return res.sendStatus(403) as any;
+
   const token = req.headers.authorization?.split(' ')[1]
+  const user = validateToken(token)
 
-  if (token && validateToken(token)) {
-    next()
-    return
-  }
+  if (!user) return res.sendStatus(403) as any;
 
-  res.status(403).end()
+  (req as any).user = user
+  next()
 }
 
 export function authByCredentials(req: Request, res: Response, next: NextFunction) {
@@ -20,10 +21,7 @@ export function authByCredentials(req: Request, res: Response, next: NextFunctio
     password: req.body.password
   }
 
-  if (!validateCredentials(user)) {
-    res.status(403).end()
-    return
-  }
+  if (!validateCredentials(user)) return res.sendStatus(403) as any
 
   next()
 }

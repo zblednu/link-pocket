@@ -11,6 +11,14 @@ export type User = {
 const bookmarkDb: Bookmark[] = []
 const userDb: User[] = []
 
+
+
+
+export function validateCredentials(user: User) {
+  return userDb.some(elem =>
+    (elem.username === user.username && elem.password === user.password))
+}
+
 export function addUser(user: User) {
   if (!user.username || !user.password) return false
   if (userDb.some(elem => user.username === elem.username)) return false
@@ -18,6 +26,14 @@ export function addUser(user: User) {
   userDb.push(user)
   return true
 }
+
+// get all registered usernames
+export function getUsers() {
+  return userDb.map(elem => elem.username)
+}
+
+
+
 
 export function addBookmark(bookmark: Bookmark) {
   if (bookmarkDb.includes(bookmark)) return false
@@ -27,19 +43,9 @@ export function addBookmark(bookmark: Bookmark) {
   return true
 }
 
-export function validateCredentials(user: User) {
-  return userDb.some(elem =>
-    (elem.username === user.username && elem.password === user.password))
-}
-
-// get all registered usernames
-export function getUsers() {
-  return userDb.map(elem => elem.username)
-}
-
 // get all bookmarks for particular user
 export function getBookmarks(username: string) {
-  return bookmarkDb
+  return (bookmarkDb
     .filter(elem => elem.username === username)
-    .map(elem => elem.link)
+    .map(elem => elem.link))
 }

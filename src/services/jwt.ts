@@ -5,5 +5,9 @@ export function createToken(payload: string) {
 }
 
 export function validateToken(token: string) {
-  return jwt.verify(token, process.env.JWT_SECRET as string)
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET as string)
+  } catch {
+    return false
+  }
 }
