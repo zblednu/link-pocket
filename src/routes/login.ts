@@ -1,11 +1,16 @@
 import { Router } from 'express'
-import { User, isValidLogin } from '../services/db'
+import { authByCredentials } from '../middleware/auth'
+import { createToken } from '../services/jwt'
 
 const router = Router()
 
-router.route('/')
-  .post((req, res, next) => {
+router.use(authByCredentials)
 
+router.route('/')
+  .post((req, res) => {
+    const token = createToken(req.body.username)
+
+    res.json({ accessToken: token })
   })
 
 export default router

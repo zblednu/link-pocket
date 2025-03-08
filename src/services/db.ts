@@ -27,11 +27,9 @@ export function addBookmark(bookmark: Bookmark) {
   return true
 }
 
-export function isValidLogin(user: User) {
-
+export function validateCredentials(user: User) {
   return userDb.some(elem =>
     (elem.username === user.username && elem.password === user.password))
-
 }
 
 // get all registered usernames

@@ -1,13 +1,10 @@
+import 'dotenv/config'
 import jwt from 'jsonwebtoken'
 
-export function authenticateByCredentials() {
-
+export function createToken(payload: string) {
+  return jwt.sign(payload, process.env.JWT_SECRET as string)
 }
 
-export function createToken(payload: object) {
-
-}
-
-export function authenticateByToken() {
-
+export function validateToken(token: string) {
+  return token && jwt.verify(token, process.env.JWT_SECRET as string)
 }
