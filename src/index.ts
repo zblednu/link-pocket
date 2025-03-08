@@ -11,6 +11,7 @@ app.use(logging)
 app.use(express.json())
 
 app.use('/register', registerRouter)
+app.use('/login', loginRouter)
 app.use('/bookmarks', bookmarksRouter)
 
 const PORT = process.env.PORT || 3000
