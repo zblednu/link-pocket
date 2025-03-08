@@ -1,9 +1,9 @@
-import express from 'express'
+import { Router } from 'express'
 
 import { addBookmark, Bookmark, getBookmarks } from '../services/db'
 import { authByToken } from '../middleware/auth'
 
-const router = express.Router()
+const router = Router()
 
 router.use(authByToken)
 

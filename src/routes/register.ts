@@ -1,8 +1,8 @@
-import express from 'express'
+import { Router } from 'express'
 
 import { addUser, getUsers, User } from '../services/db'
 
-const router = express.Router()
+const router = Router()
 
 router.route('/')
   .post((req, res) => {
