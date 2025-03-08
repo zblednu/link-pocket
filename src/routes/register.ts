@@ -11,8 +11,6 @@ router.route('/')
       "password": req.body.password
     }
 
-    console.log(user)
-
     if (addUser(user)) {
       res.status(201).end()
       return

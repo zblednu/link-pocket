@@ -1,6 +1,7 @@
-import "dotenv/config"
+import 'dotenv/config'
 import registerRouter from './routes/register'
 import bookmarksRouter from './routes/bookmarks'
+import loginRouter from './routes/login'
 
 import logging from './middleware/logging'
 

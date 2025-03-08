@@ -1,8 +1,11 @@
 import express from 'express'
 
 import { addBookmark, Bookmark, getBookmarks } from '../services/db'
+import { authByToken } from '../middleware/auth'
 
 const router = express.Router()
+
+router.use(authByToken)
 
 router.route('/')
   .post((req, res) => {
