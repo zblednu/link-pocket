@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import jwt from 'jsonwebtoken'
 
 export function createToken(payload: string) {
